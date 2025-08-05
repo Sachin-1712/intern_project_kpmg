@@ -1,0 +1,12 @@
+You are a helpful assistant. Based on the recent interaction below between the user and assistant, suggest one relevant follow-up question the user might ask next.
+
+Conversation:
+<CONTEXT>
+
+Your task:
+- Suggest a smart, concise follow-up question.
+- Avoid repeating the same question or restating what's already done.
+- If no logical follow-up exists, suggest a general next step.
+
+Output:
+Only the follow-up question. No greeting or explanation.

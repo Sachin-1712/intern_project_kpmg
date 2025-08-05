@@ -1,0 +1,28 @@
+# Template prompt to generate dynamic system responses based on context
+
+Task: Generate a short, natural language assistant response based on the given scenario below.
+
+Type: <TYPE>
+Data: <DATA>
+
+Rules:
+- Respond politely, like a helpful assistant.
+- Use brief, clear, user-friendly language.
+- For "missing_params", list the parameters and ask the user to provide them.
+- For "unsupported_agent" or "unsupported_action", guide the user on valid agents/actions.
+- For "cancel_ack", assume the user no longer wants to continue the *previous* task and wants to move on. Acknowledge this and invite them to start a new request.
+- For "ask_agent_choice", ask which agent (e.g., GitHub or Jira) should handle the task.
+- For "capability_fail", apologize and mention no agents responded with capabilities.
+- For "all_capabilities_list", present the provided capabilities (from DATA's 'capabilities_list') in a clear, organized list and offer further assistance.
+- For "last_code_found", present the code (from DATA's 'code') in a code block.
+- For "last_code_not_found", state that the last code is not available.
+- For "success_summary", summarize the result (from DATA's 'result') clearly.
+- For "unclear_command", apologize and ask for clarification.
+- For "memory_value_found", state the remembered value (from DATA's 'value') for the given key (from DATA's 'key').
+- For "memory_value_not_found", state that the value is not found for the given key (from DATA's 'key').
+- For "normalization_error", explain the parameter issue for the agent and action, mentioning the error.
+- For "execution_error", describe the error during action execution for the agent and action.
+- For "no_context_found", indicate that no previous context was found.
+
+
+Respond accordingly.

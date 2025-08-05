@@ -1,0 +1,72 @@
+{
+  "agents": {
+    "github": {
+      "module": "agents.git_agent.logic",
+      "class": "GitAgentLogic"
+    },
+    "jira": {
+      "module": "agents.jira_agent.logic",
+      "class": "JiraAgentLogic"
+    },
+    "developer": {
+      "module": "agents.developer_agent.logic",
+      "class": "DeveloperAgentLogic"
+    },
+    "research": {
+      "module": "agents.research_agent.logic",
+      "class": "ResearchAgentLogic"
+    },
+    "data": {
+      "module": "agents.data_agent.logic",
+      "class": "DataAgentLogic"
+    },
+    "chat": {
+      "module": "agents.chat_agent.logic",
+      "class": "ChatAgentLogic"
+    }
+  },
+  "prompts": {
+    "chat_classifier": "Is the following user input a command for a software tool (like git, jira, or a developer tool) or a general chat message? Respond with only the word 'COMMAND' or 'CHAT'.\n\nUser Input: \"{user_input}\"",
+    "memory_query": "You are a memory retrieval system. Analyze the user's question and the stored facts.\nTASK:\n- If the user is asking for a list of everything they asked to be remembered, summarize all the facts in a bulleted list.\n- If the user is asking a specific question, answer it using a single, relevant fact from the list.\n- If no fact answers the question, return \"NONE\".\n---\nUser's Question: \"{query}\"\n---\nStored Facts:\n- {facts_str}\n---\nAnswer:",
+    "memory_storage_inference": "You are a system that decides what information to store in long-term memory. Based on the action performed and its result, extract key-value pairs that are important for future context. For example, if a file is created, store its name or ID. If a pull request is made, store its number. If a user preference is stated, store it. Output a JSON object. If there's nothing to store, output an empty JSON object {}.\n\nAgent: <AGENT>\nAction: <ACTION>\nParameters: <PARAMS_JSON>\nResult: <RESULT_OBJ_JSON>\n\nMemory JSON:",
+    "memory_inference": "You are a system that infers which piece of stored memory can fulfill a needed parameter for an action. Look at the user's memory and determine which memory key's value would be appropriate for the <NEEDED_PARAM>. Respond with only the memory key if a match is found, otherwise respond with 'NONE'.\n\nNeeded Parameter: <NEEDED_PARAM>\nAgent: <AGENT>\nAction: <ACTION>\n\nUser Memory: <USER_MEMORY_JSON>\n\nAppropriate Memory Key:",
+    "router_responses": {
+      "unclear_command": "I'm sorry, I'm not quite sure what you're asking. Could you please rephrase your request?",
+      "missing_params": "I need a bit more information to proceed. Please provide the following: {needs}",
+      "memory_value_found": "Based on my records: {value}",
+      "unsupported_agent": "I don't have an agent named '{agent}' to handle that request.",
+      "normalization_error": "I encountered an issue while trying to process the parameters for the '{agent}' agent. Error: {error}",
+      "unsupported_action": "The '{agent}' agent does not have an action named '{action}'.",
+      "execution_error": "I ran into an error trying to execute the '{action}' action with the '{agent}' agent. Error: {error}",
+      "all_capabilities_list": "I can help with a variety of tasks. Here's a summary of my main capabilities:\n\n{capabilities_list}\n\nWhat would you like to do?"
+    }
+  },
+  "flags": {
+    "none": "NONE",
+    "chat_agent_name": "chat",
+    "last_code_placeholder": "LAST_GENERATED_CODE_PLACEHOLDER",
+    "content_param_names": [
+      "code",
+      "content"
+    ],
+    "push_file_action": "push_file",
+    "openai_provider": "openai"
+  },
+  "chat_actions": {
+    "remember": "remember_this",
+    "query_memory": "query_memory",
+    "get_history": "get_chat_history",
+    "show_capabilities": "show_capabilities"
+  },
+  "messages": {
+    "remember_success": "Okay, I've remembered that: '{fact}'",
+    "memory_query_fail": "I don't have any information stored that relates to your question.",
+    "no_history": "There is no chat history to display yet.",
+    "history_header": "Here is our recent conversation history:\n{formatted_history}",
+    "action_complete": "Action completed.",
+    "error_fallback": "I apologize, but I encountered an error generating a response."
+  },
+  "display": {
+    "followup_prefix": " Suggested follow-up: "
+  }
+}

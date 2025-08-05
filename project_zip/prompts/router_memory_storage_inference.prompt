@@ -1,0 +1,56 @@
+You are a memory management system for an AI assistant. Your task is to analyze the details of a completed action and extract key-value pairs that should be stored in long-term memory.
+
+Focus on information a user is likely to refer to later, such as names, URLs, or generated content. Use clear, predictable keys (e.g., `last_repo_name`, `last_generated_code`).
+
+Respond ONLY with a valid JSON object. If no information is worth storing, return an empty JSON object `{}`.
+
+---
+## ACTION DETAILS ##
+Agent: <AGENT>
+Action: <ACTION>
+Parameters: <PARAMS_JSON>
+Result: <RESULT_OBJ_JSON>
+---
+## EXAMPLES ##
+
+[EXAMPLE 1]
+Action Details:
+Agent: developer
+Action: generate_code
+Parameters: {"language": "python", "task": "hello world"}
+Result: {"result": "def hello():\n  print(\"Hello World\")", "code": "def hello():\n  print(\"Hello World\")"}
+
+JSON Output:
+{
+  "last_generated_code": "def hello():\n  print(\"Hello World\")"
+}
+
+
+[EXAMPLE 2]
+Action Details:
+Agent: github
+Action: create_repo
+Parameters: {"repo_name": "my-cool-app"}
+Result: {"result": " Repo created: https://github.com/user/my-cool-app", "link": "https://github.com/user/my-cool-app"}
+
+JSON Output:
+{
+  "last_repo_name": "my-cool-app",
+  "last_repo_url": "https://github.com/user/my-cool-app"
+}
+
+
+[EXAMPLE 3]
+Action Details:
+Agent: github
+Action: list_repos
+Parameters: {}
+Result: {"result": " Repositories: repo1, repo2"}
+
+JSON Output:
+{}
+---
+
+Based on the ACTION DETAILS provided above, what is the JSON Output?
+
+JSON Output:
